@@ -45,7 +45,7 @@
         </div>
       </div>
     </div>
-    <ul class="comments__replies">
+    <ul class="comments__replies" *ngIf="comment.replies.length > 0">
       <li class="comments__reply" *ngFor="let reply of comment.replies">
         <div class="comments__comment-reply">
           <div class="comments__comment-rating-wrapper">

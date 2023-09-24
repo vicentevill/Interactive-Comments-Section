@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1rem;
+  margin: 0 1rem;
 }
 
 .comments__comment {
@@ -12,6 +14,12 @@
   gap: 1rem;
   max-width: 50rem;
   align-items: center;
+}
+
+.comments__comment-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 .comments__comment-rating-wrapper {
@@ -78,7 +86,10 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 1rem;
-  padding: 1rem 0 0 1rem;
+  padding: 0 0 0 1rem;
+  margin: 1rem 0 0 0;
+  width: fit-content;
+  border-left: 4px solid var(--light-gray);
 }
 
 .comments__comment-reply {
