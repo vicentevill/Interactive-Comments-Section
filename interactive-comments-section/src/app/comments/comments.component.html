@@ -50,13 +50,56 @@
       </div>
     </div>
 
-    <ul>
+    <ul class="comments__replies">
       <li class="comments__reply" *ngFor="let reply of comment.replies">
         <!-- <img [src]="reply.user.image.png" alt="avatar" />
         <p>{{ reply.user.username }}>> {{ reply.content }}</p>
         <p>Score: {{ reply.score }}</p>
         <p>Posted: {{ reply.createdAt }}</p> -->
-        Reply
+
+        <div class="comments__comment">
+          <div class="comments__comment-rating-wrapper">
+            <div class="comments__comment-rating-vote">
+              <img
+                class="comments__comment-rating-vote-icon"
+                src="./assets/images/icon-plus.svg"
+                alt="upvote"
+              />
+            </div>
+            <div class="comments__comment-rating">{{ reply.score }}</div>
+            <div class="comments__comment-rating-vote">
+              <img
+                class="comments__comment-rating-vote-icon"
+                src="./assets/images/icon-minus.svg"
+                alt="downvote"
+              />
+            </div>
+          </div>
+          <div class="comments__comment-content-wrapper">
+            <div class="comments__comment-info-reply">
+              <div class="comments__comment-info">
+                <img
+                  class="comments__avatar"
+                  [src]="reply.user.image.png"
+                  alt="avatar"
+                />
+                <p>{{ reply.user.username }}</p>
+                <p>{{ reply.createdAt }}</p>
+              </div>
+              <div class="comments__comment-reply">
+                <img
+                  class="comments__reply-icon"
+                  src="./assets/images/icon-reply.svg"
+                  alt="reply"
+                />
+                Reply
+              </div>
+            </div>
+            <div class="comment__comment-content">
+              {{ reply.content }}
+            </div>
+          </div>
+        </div>
       </li>
     </ul>
   </li>
