@@ -6,12 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class FetchCommentsService {
-  getData(): Observable<any> {
-    // Provide the path to your JSON file in assets
-    const jsonFilePath = './assets/json/data.json';
+  jsonFilePath = './assets/json/data.json';
 
-    // Fetch data from the JSON file
-    return this.http.get(jsonFilePath);
+  getData(): Observable<any> {
+    return this.http.get(this.jsonFilePath);
   }
 
   constructor(private http: HttpClient) {}

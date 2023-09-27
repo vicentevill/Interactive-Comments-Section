@@ -4,7 +4,7 @@
   <li class="comments__comment-wrapper" *ngFor="let comment of data.comments">
     <div class="comments__comment">
       <div class="comments__comment-rating-wrapper">
-        <div class="comments__comment-rating-vote">
+        <div class="comments__comment-rating-vote" (click)="increment(comment)">
           <img
             class="comments__comment-rating-vote-icon"
             src="./assets/images/icon-plus.svg"
@@ -12,7 +12,7 @@
           />
         </div>
         <div class="comments__comment-rating">{{ comment.score }}</div>
-        <div class="comments__comment-rating-vote">
+        <div class="comments__comment-rating-vote" (click)="decrement(comment)">
           <img
             class="comments__comment-rating-vote-icon"
             src="./assets/images/icon-minus.svg"
@@ -49,7 +49,10 @@
       <li class="comments__reply" *ngFor="let reply of comment.replies">
         <div class="comments__comment-reply">
           <div class="comments__comment-rating-wrapper">
-            <div class="comments__comment-rating-vote">
+            <div
+              class="comments__comment-rating-vote"
+              (click)="increment(reply)"
+            >
               <img
                 class="comments__comment-rating-vote-icon"
                 src="./assets/images/icon-plus.svg"
@@ -57,7 +60,10 @@
               />
             </div>
             <div class="comments__comment-rating">{{ reply.score }}</div>
-            <div class="comments__comment-rating-vote">
+            <div
+              class="comments__comment-rating-vote"
+              (click)="decrement(reply)"
+            >
               <img
                 class="comments__comment-rating-vote-icon"
                 src="./assets/images/icon-minus.svg"

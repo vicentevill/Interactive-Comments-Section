@@ -13,6 +13,14 @@ export class CommentsComponent implements OnInit {
     console.log(this.data);
   }
 
+  increment(comment: any) {
+    comment.score++;
+  }
+
+  decrement(comment: any) {
+    comment.score--;
+  }
+
   constructor(private fetchCommentsService: FetchCommentsService) {}
 
   ngOnInit(): void {
