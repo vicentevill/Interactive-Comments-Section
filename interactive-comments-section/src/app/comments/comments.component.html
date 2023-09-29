@@ -31,7 +31,10 @@
             <p>{{ comment.user.username }}</p>
             <p>{{ comment.createdAt }}</p>
           </div>
-          <div class="comments__comment-reply-button">
+          <div
+            class="comments__comment-reply-button"
+            (click)="addReply(comment)"
+          >
             <img
               class="comments__reply-icon"
               src="./assets/images/icon-reply.svg"

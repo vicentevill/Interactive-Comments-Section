@@ -21,6 +21,21 @@ export class CommentsComponent implements OnInit {
     comment.score--;
   }
 
+  addReply(comment: any) {
+    const newComment = {
+      id: 100,
+      content: 'Works',
+      createdAt: '1 second ago',
+      score: 12,
+      user: {
+        image: this.data.currentUser.image,
+        username: this.data.currentUser.username,
+      },
+      replies: [],
+    };
+    comment.replies.push(newComment);
+  }
+
   constructor(private fetchCommentsService: FetchCommentsService) {}
 
   ngOnInit(): void {
