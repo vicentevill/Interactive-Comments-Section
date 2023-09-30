@@ -12,7 +12,6 @@
   padding: 1rem;
   border-radius: 0.25rem;
   gap: 1rem;
-  max-width: 50rem;
   align-items: center;
 }
 
@@ -20,6 +19,7 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  max-width: 50rem;
 }
 
 .comments__comment-rating-wrapper {
@@ -74,6 +74,9 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
+  min-height: 8rem;
+  height: 100%;
 }
 
 .comments__comment-rating-vote-icon {
@@ -88,16 +91,16 @@
   gap: 1rem;
   padding: 0 0 0 1rem;
   margin: 1rem 0 0 0;
-  width: fit-content;
+  width: 90%;
   border-left: 4px solid var(--light-gray);
 }
 
-.comments__comment-reply {
+.comments__reply {
+  width: 100%;
   display: flex;
   background: var(--white);
   padding: 1rem;
   border-radius: 0.25rem;
   gap: 1rem;
-  max-width: 45rem;
   align-items: center;
 }
