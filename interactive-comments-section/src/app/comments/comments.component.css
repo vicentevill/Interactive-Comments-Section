@@ -104,3 +104,34 @@
   gap: 1rem;
   align-items: center;
 }
+
+.comments__reply-input-wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 1rem;
+  gap: 1rem;
+  background: var(--white);
+}
+
+.comments__reply-input-avatar {
+  width: 3rem;
+  height: 3rem;
+}
+
+.comments__reply-input-send {
+  background: var(--moderate-blue);
+  color: white;
+  height: fit-content;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+}
+
+.comments__reply-input-field {
+  width: 100%;
+  border: 2px solid var(--dark-blue);
+  border-radius: 0.25rem;
+  height: 7rem;
+  resize: none;
+  padding: 1rem;
+}
