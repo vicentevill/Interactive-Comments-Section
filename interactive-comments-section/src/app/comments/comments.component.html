@@ -110,10 +110,13 @@
             class="comments__reply-input-field"
             name="reply-field"
             maxlength="200"
+            #inputRef
           ></textarea>
           <div
             class="comments__reply-input-send"
-            (click)="addReply(comment, reply.user.username, reply)"
+            (click)="
+              addReply(comment, reply.user.username, inputRef.value, reply)
+            "
           >
             Reply
           </div>
@@ -130,10 +133,11 @@
         class="comments__reply-input-field"
         name="reply-field"
         maxlength="200"
+        #inputRef
       ></textarea>
       <div
         class="comments__reply-input-send"
-        (click)="addReply(comment, comment.user.username)"
+        (click)="addReply(comment, comment.user.username, inputRef.value)"
       >
         Reply
       </div>

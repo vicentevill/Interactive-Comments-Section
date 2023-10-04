@@ -21,10 +21,13 @@ export class CommentsComponent implements OnInit {
     comment.score--;
   }
 
-  addReply(comment: any, username: string, reply?: any) {
+  addReply(comment: any, username: string, inputValue: string, reply?: any) {
+    if (!inputValue) {
+      return;
+    }
     const newComment = {
       id: 100,
-      content: `@${username}`,
+      content: `@${username} ${inputValue}`,
       createdAt: '1 second ago',
       score: 0,
       user: {
@@ -41,11 +44,13 @@ export class CommentsComponent implements OnInit {
     }
   }
 
+  getValue(inputValue: string) {
+    console.log('Input value:', inputValue);
+  }
+
   toggleReplyInput(comment: any) {
     comment.showReplyInput = !comment.showReplyInput;
   }
-
-  // (click)="addReply(comment, reply.user.username)"
 
   constructor(private fetchCommentsService: FetchCommentsService) {}
 
