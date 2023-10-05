@@ -133,3 +133,15 @@
   resize: none;
   padding: 1rem;
 }
+
+@media only screen and (max-width: 500px) {
+  .comments__comment {
+    flex-direction: column-reverse;
+  }
+
+  .comments__comment-rating-wrapper {
+    flex-direction: row;
+    min-width: 8rem;
+    height: 3rem;
+  }
+}
