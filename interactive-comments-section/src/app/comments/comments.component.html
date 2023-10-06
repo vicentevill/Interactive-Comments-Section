@@ -1,21 +1,40 @@
 <ul class="comments">
   <li class="comments__comment-wrapper" *ngFor="let comment of data.comments">
     <div class="comments__comment">
-      <div class="comments__comment-rating-wrapper">
-        <div class="comments__comment-rating-vote" (click)="increment(comment)">
-          <img
-            class="comments__comment-rating-vote-icon"
-            src="./assets/images/icon-plus.svg"
-            alt="upvote"
-          />
+      <div class="comments__options-wrapper">
+        <div class="comments__comment-rating-wrapper">
+          <div
+            class="comments__comment-rating-vote"
+            (click)="increment(comment)"
+          >
+            <img
+              class="comments__comment-rating-vote-icon"
+              src="./assets/images/icon-plus.svg"
+              alt="upvote"
+            />
+          </div>
+          <div class="comments__comment-rating">{{ comment.score }}</div>
+          <div
+            class="comments__comment-rating-vote"
+            (click)="decrement(comment)"
+          >
+            <img
+              class="comments__comment-rating-vote-icon"
+              src="./assets/images/icon-minus.svg"
+              alt="downvote"
+            />
+          </div>
         </div>
-        <div class="comments__comment-rating">{{ comment.score }}</div>
-        <div class="comments__comment-rating-vote" (click)="decrement(comment)">
+        <div
+          class="comments__comment-reply-button"
+          (click)="toggleReplyInput(comment)"
+        >
           <img
-            class="comments__comment-rating-vote-icon"
-            src="./assets/images/icon-minus.svg"
-            alt="downvote"
+            class="comments__reply-icon"
+            src="./assets/images/icon-reply.svg"
+            alt="reply"
           />
+          Reply
         </div>
       </div>
       <div class="comments__comment-content-wrapper">
@@ -40,6 +59,24 @@
             />
             Reply
           </div>
+          <div class="comments__edit-delete-wrapper">
+            <div class="comments__delete">
+              <img
+                class="comments__delete-icon"
+                src="./assets/images/icon-delete.svg"
+                alt="delete"
+              />
+              <p>Delete</p>
+            </div>
+            <div class="comments__edit">
+              <img
+                class="comments__edit-icon"
+                src="./assets/images/icon-edit.svg"
+                alt="edit"
+              />
+              <p>Edit</p>
+            </div>
+          </div>
         </div>
         <div class="comment__comment-content">
           {{ comment.content }}
@@ -49,27 +86,40 @@
     <ul class="comments__replies" *ngIf="comment.replies.length > 0">
       <li class="comments__reply" *ngFor="let reply of comment.replies">
         <div class="comments__comment">
-          <div class="comments__comment-rating-wrapper">
-            <div
-              class="comments__comment-rating-vote"
-              (click)="increment(reply)"
-            >
-              <img
-                class="comments__comment-rating-vote-icon"
-                src="./assets/images/icon-plus.svg"
-                alt="upvote"
-              />
+          <div class="comments__options-wrapper">
+            <div class="comments__comment-rating-wrapper">
+              <div
+                class="comments__comment-rating-vote"
+                (click)="increment(comment)"
+              >
+                <img
+                  class="comments__comment-rating-vote-icon"
+                  src="./assets/images/icon-plus.svg"
+                  alt="upvote"
+                />
+              </div>
+              <div class="comments__comment-rating">{{ comment.score }}</div>
+              <div
+                class="comments__comment-rating-vote"
+                (click)="decrement(comment)"
+              >
+                <img
+                  class="comments__comment-rating-vote-icon"
+                  src="./assets/images/icon-minus.svg"
+                  alt="downvote"
+                />
+              </div>
             </div>
-            <div class="comments__comment-rating">{{ reply.score }}</div>
             <div
-              class="comments__comment-rating-vote"
-              (click)="decrement(reply)"
+              class="comments__comment-reply-button"
+              (click)="toggleReplyInput(comment)"
             >
               <img
-                class="comments__comment-rating-vote-icon"
-                src="./assets/images/icon-minus.svg"
-                alt="downvote"
+                class="comments__reply-icon"
+                src="./assets/images/icon-reply.svg"
+                alt="reply"
               />
+              Reply
             </div>
           </div>
           <div class="comments__comment-content-wrapper">
@@ -93,6 +143,24 @@
                   alt="reply"
                 />
                 Reply
+              </div>
+              <div class="comments__edit-delete-wrapper">
+                <div class="comments__delete">
+                  <img
+                    class="comments__delete-icon"
+                    src="./assets/images/icon-delete.svg"
+                    alt="delete"
+                  />
+                  <p>Delete</p>
+                </div>
+                <div class="comments__edit">
+                  <img
+                    class="comments__edit-icon"
+                    src="./assets/images/icon-edit.svg"
+                    alt="edit"
+                  />
+                  <p>Edit</p>
+                </div>
               </div>
             </div>
             <div class="comment__comment-content">
