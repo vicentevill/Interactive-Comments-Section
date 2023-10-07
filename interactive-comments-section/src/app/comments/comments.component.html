@@ -49,6 +49,7 @@
             <p>{{ comment.createdAt }}</p>
           </div>
           <div
+            *ngIf="comment.user.username != data.currentUser.username"
             class="comments__comment-reply-button"
             (click)="toggleReplyInput(comment)"
           >
@@ -59,7 +60,10 @@
             />
             Reply
           </div>
-          <div class="comments__edit-delete-wrapper">
+          <div
+            class="comments__edit-delete-wrapper"
+            *ngIf="comment.user.username === data.currentUser.username"
+          >
             <div class="comments__delete">
               <img
                 class="comments__delete-icon"
@@ -111,6 +115,7 @@
               </div>
             </div>
             <div
+              *ngIf="reply.user.username != data.currentUser.username"
               class="comments__comment-reply-button"
               (click)="toggleReplyInput(comment)"
             >
@@ -120,6 +125,27 @@
                 alt="reply"
               />
               Reply
+            </div>
+            <div
+              class="comments__edit-delete-wrapper"
+              *ngIf="reply.user.username === data.currentUser.username"
+            >
+              <div class="comments__delete">
+                <img
+                  class="comments__delete-icon"
+                  src="./assets/images/icon-delete.svg"
+                  alt="delete"
+                />
+                <p>Delete</p>
+              </div>
+              <div class="comments__edit">
+                <img
+                  class="comments__edit-icon"
+                  src="./assets/images/icon-edit.svg"
+                  alt="edit"
+                />
+                <p>Edit</p>
+              </div>
             </div>
           </div>
           <div class="comments__comment-content-wrapper">
@@ -136,6 +162,7 @@
               <div
                 class="comments__comment-reply-button"
                 (click)="toggleReplyInput(reply)"
+                *ngIf="reply.user.username != data.currentUser.username"
               >
                 <img
                   class="comments__reply-icon"
@@ -144,7 +171,10 @@
                 />
                 Reply
               </div>
-              <div class="comments__edit-delete-wrapper">
+              <div
+                class="comments__edit-delete-wrapper"
+                *ngIf="reply.user.username === data.currentUser.username"
+              >
                 <div class="comments__delete">
                   <img
                     class="comments__delete-icon"
