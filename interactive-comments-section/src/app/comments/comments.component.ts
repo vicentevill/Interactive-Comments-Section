@@ -26,15 +26,15 @@ export class CommentsComponent implements OnInit {
       return;
     }
     const newComment = {
-      id: 100,
-      content: `@${username} ${inputValue}`,
+      id: Date.now(),
+      content: inputValue,
       createdAt: '1 second ago',
       score: 0,
+      replyingTo: username,
       user: {
         image: this.data.currentUser.image,
         username: this.data.currentUser.username,
       },
-      replies: [],
     };
     comment.replies.push(newComment);
     if (reply) {
@@ -42,6 +42,18 @@ export class CommentsComponent implements OnInit {
     } else {
       this.toggleReplyInput(comment);
     }
+  }
+
+  deleteReply(comment: any, commentId: number) {
+    const index = comment.replies.findIndex(
+      (reply: any) => reply.id === commentId
+    );
+    comment.replies.splice(index, 1);
+    console.log(index);
+  }
+
+  editReply(comment: any, input: string) {
+    comment.content = input;
   }
 
   getValue(inputValue: string) {

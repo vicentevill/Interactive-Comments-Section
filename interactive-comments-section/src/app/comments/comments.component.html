@@ -94,7 +94,7 @@
             <div class="comments__comment-rating-wrapper">
               <div
                 class="comments__comment-rating-vote"
-                (click)="increment(comment)"
+                (click)="increment(reply)"
               >
                 <img
                   class="comments__comment-rating-vote-icon"
@@ -102,10 +102,10 @@
                   alt="upvote"
                 />
               </div>
-              <div class="comments__comment-rating">{{ comment.score }}</div>
+              <div class="comments__comment-rating">{{ reply.score }}</div>
               <div
                 class="comments__comment-rating-vote"
-                (click)="decrement(comment)"
+                (click)="decrement(reply)"
               >
                 <img
                   class="comments__comment-rating-vote-icon"
@@ -175,7 +175,10 @@
                 class="comments__edit-delete-wrapper"
                 *ngIf="reply.user.username === data.currentUser.username"
               >
-                <div class="comments__delete">
+                <div
+                  class="comments__delete"
+                  (click)="deleteReply(comment, reply.id)"
+                >
                   <img
                     class="comments__delete-icon"
                     src="./assets/images/icon-delete.svg"
@@ -183,7 +186,7 @@
                   />
                   <p>Delete</p>
                 </div>
-                <div class="comments__edit">
+                <div class="comments__edit" (click)="editReply(reply, 'Test')">
                   <img
                     class="comments__edit-icon"
                     src="./assets/images/icon-edit.svg"
@@ -194,6 +197,7 @@
               </div>
             </div>
             <div class="comment__comment-content">
+              <span class="comment__replying-to">@{{ reply.replyingTo }}</span>
               {{ reply.content }}
             </div>
           </div>
