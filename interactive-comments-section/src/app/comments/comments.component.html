@@ -72,7 +72,7 @@
               />
               <p>Delete</p>
             </div>
-            <div class="comments__edit">
+            <div class="comments__edit" (click)="toggleUpdateInput(comment)">
               <img
                 class="comments__edit-icon"
                 src="./assets/images/icon-edit.svg"
@@ -82,8 +82,28 @@
             </div>
           </div>
         </div>
-        <div class="comment__comment-content">
-          {{ comment.content }}
+
+        <div
+          class="comments__content-update"
+          *ngIf="comment.showUpdateInput; else contentBlock"
+        >
+          <textarea
+            class="comments__reply-input-field"
+            name="edit-comment-field"
+            maxlength="200"
+            [value]="comment.content"
+          ></textarea>
+        </div>
+
+        <ng-template #contentBlock>
+          <!-- Render content when showUpdateInput is false -->
+          <div class="comment__comment-content">
+            {{ comment.content }}
+          </div>
+        </ng-template>
+
+        <div class="comments__reply-input-send" *ngIf="comment.showUpdateInput">
+          Update
         </div>
       </div>
     </div>
@@ -138,7 +158,7 @@
                 />
                 <p>Delete</p>
               </div>
-              <div class="comments__edit">
+              <div class="comments__edit" (click)="toggleUpdateInput(reply)">
                 <img
                   class="comments__edit-icon"
                   src="./assets/images/icon-edit.svg"
@@ -186,7 +206,7 @@
                   />
                   <p>Delete</p>
                 </div>
-                <div class="comments__edit" (click)="editReply(reply, 'Test')">
+                <div class="comments__edit" (click)="toggleUpdateInput(reply)">
                   <img
                     class="comments__edit-icon"
                     src="./assets/images/icon-edit.svg"
@@ -196,9 +216,33 @@
                 </div>
               </div>
             </div>
-            <div class="comment__comment-content">
-              <span class="comment__replying-to">@{{ reply.replyingTo }}</span>
-              {{ reply.content }}
+
+            <div
+              class="comments__content-update"
+              *ngIf="reply.showUpdateInput; else contentBlock"
+            >
+              <textarea
+                class="comments__reply-input-field"
+                *ngIf="reply.showUpdateInput"
+                name="edit-comment-field"
+                maxlength="200"
+                [value]="reply.content"
+              ></textarea>
+            </div>
+            <ng-template #contentBlock>
+              <div class="comment__comment-content">
+                <span class="comment__replying-to"
+                  >@{{ reply.replyingTo }}</span
+                >
+                {{ reply.content }}
+              </div>
+            </ng-template>
+
+            <div
+              class="comments__reply-input-send"
+              *ngIf="reply.showUpdateInput"
+            >
+              Update
             </div>
           </div>
         </div>

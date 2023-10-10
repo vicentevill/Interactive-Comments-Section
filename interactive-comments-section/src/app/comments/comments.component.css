@@ -53,6 +53,7 @@
 .comments__comment-info-reply {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .comments__comment-info {
@@ -80,10 +81,19 @@
 .comments__comment-content-wrapper {
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   gap: 1rem;
   width: 100%;
   min-height: 8rem;
   height: 100%;
+}
+
+.comments__content-update {
+  width: 100%;
+}
+
+.comment__comment-content {
+  width: 100%;
 }
 
 .comments__comment-rating-vote-icon {
@@ -134,15 +144,24 @@
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   cursor: pointer;
+  width: fit-content;
+}
+
+.comments__reply-input-send:hover {
+  background: var(--light-grayish-blue);
 }
 
 .comments__reply-input-field {
   width: 100%;
-  border: 2px solid var(--dark-blue);
+  border: 2px solid var(--moderate-blue);
   border-radius: 0.25rem;
   height: 7rem;
   resize: none;
   padding: 1rem;
+}
+
+.comments__reply-input-field:focus {
+  outline: 1px solid var(--moderate-blue);
 }
 
 .comments__edit-delete-wrapper {
