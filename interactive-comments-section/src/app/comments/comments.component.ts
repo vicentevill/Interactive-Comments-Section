@@ -68,6 +68,12 @@ export class CommentsComponent implements OnInit {
     comment.showUpdateInput = !comment.showUpdateInput;
   }
 
+  editComment(comment: any, inputValue: string) {
+    comment.content = inputValue;
+    console.log(inputValue);
+    this.toggleUpdateInput(comment);
+  }
+
   constructor(private fetchCommentsService: FetchCommentsService) {}
 
   ngOnInit(): void {

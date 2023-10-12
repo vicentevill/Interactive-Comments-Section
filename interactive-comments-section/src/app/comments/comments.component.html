@@ -88,11 +88,19 @@
           *ngIf="comment.showUpdateInput; else contentBlock"
         >
           <textarea
+            #updateValue
             class="comments__reply-input-field"
             name="edit-comment-field"
             maxlength="200"
             [value]="comment.content"
           ></textarea>
+          <div
+            class="comments__reply-input-send"
+            *ngIf="comment.showUpdateInput"
+            (click)="editComment(comment, updateValue.value)"
+          >
+            Update
+          </div>
         </div>
 
         <ng-template #contentBlock>
@@ -101,10 +109,6 @@
             {{ comment.content }}
           </div>
         </ng-template>
-
-        <div class="comments__reply-input-send" *ngIf="comment.showUpdateInput">
-          Update
-        </div>
       </div>
     </div>
     <ul class="comments__replies" *ngIf="comment.replies.length > 0">
@@ -222,12 +226,19 @@
               *ngIf="reply.showUpdateInput; else contentBlock"
             >
               <textarea
+                #editInput
                 class="comments__reply-input-field"
-                *ngIf="reply.showUpdateInput"
                 name="edit-comment-field"
                 maxlength="200"
                 [value]="reply.content"
               ></textarea>
+              <div
+                class="comments__reply-input-send"
+                *ngIf="reply.showUpdateInput"
+                (click)="editComment(reply, editInput.value)"
+              >
+                Update
+              </div>
             </div>
             <ng-template #contentBlock>
               <div class="comment__comment-content">
@@ -237,13 +248,6 @@
                 {{ reply.content }}
               </div>
             </ng-template>
-
-            <div
-              class="comments__reply-input-send"
-              *ngIf="reply.showUpdateInput"
-            >
-              Update
-            </div>
           </div>
         </div>
         <div class="comments__reply-input-wrapper" *ngIf="reply.showReplyInput">
