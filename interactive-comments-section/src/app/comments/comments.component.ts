@@ -9,6 +9,8 @@ import { FetchCommentsService } from '../fetch-comments.service';
 export class CommentsComponent implements OnInit {
   data: any;
 
+  commentInputValue: string = '';
+
   logData() {
     console.log(this.data);
   }
@@ -19,6 +21,31 @@ export class CommentsComponent implements OnInit {
 
   decrement(comment: any) {
     comment.score--;
+  }
+
+  onInput(value: string): void {
+    this.commentInputValue = value;
+  }
+
+  addComment(inputValue: string) {
+    if (!inputValue) {
+      return;
+    }
+    const newComment = {
+      id: Date.now(),
+      content: inputValue,
+      createdAt: '1 second ago',
+      score: 0,
+      user: {
+        image: {
+          png: this.data.currentUser.image.png,
+        },
+        username: this.data.currentUser.username,
+      },
+      replies: [],
+    };
+    this.data.comments.push(newComment);
+    this.commentInputValue = '';
   }
 
   addReply(comment: any, username: string, inputValue: string, reply?: any) {
@@ -69,6 +96,9 @@ export class CommentsComponent implements OnInit {
   }
 
   editComment(comment: any, inputValue: string) {
+    if (!inputValue) {
+      return;
+    }
     comment.content = inputValue;
     console.log(inputValue);
     this.toggleUpdateInput(comment);
