@@ -293,4 +293,27 @@
       </div>
     </div>
   </li>
+  <div class="comments__add-comment">
+    <div class="comments__reply-input-wrapper">
+      <img
+        class="comments__reply-input-avatar"
+        [src]="data.currentUser.image.png"
+        alt="avatar"
+      />
+      <textarea
+        class="comments__reply-input-field"
+        name="reply-field"
+        maxlength="200"
+        [value]="commentInputValue"
+        #inputRef
+        (input)="onInput(inputRef.value)"
+      ></textarea>
+      <div
+        class="comments__reply-input-send"
+        (click)="addComment(commentInputValue)"
+      >
+        Reply
+      </div>
+    </div>
+  </div>
 </ul>
