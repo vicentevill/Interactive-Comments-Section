@@ -201,6 +201,62 @@
   color: var(--moderate-blue);
 }
 
+.comments__delete-modal-background {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.1);
+  top: 0;
+  left: 0;
+}
+
+.comments__delete-modal {
+  background: var(--white);
+  padding: 2rem;
+  max-width: 21rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 0.25rem;
+}
+
+.comments__delete-modal-header {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--dark-blue);
+}
+
+.comments__delete-modal-message {
+  color: var(--grayish-blue);
+}
+
+.comments__delete-modal-buttons-wrapper {
+  display: flex;
+  width: 100%;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.comments__delete-modal-button-cancel {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  color: var(--white);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  background: var(--grayish-blue);
+}
+.comments__delete-modal-button-delete {
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  color: var(--white);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  background: var(--soft-red);
+}
+
 @media only screen and (max-width: 500px) {
   .comments__comment {
     flex-direction: column-reverse;

@@ -71,6 +71,14 @@ export class CommentsComponent implements OnInit {
     }
   }
 
+  deleteComment(commentId: number) {
+    const index = this.data.comments.findIndex(
+      (comment: any) => comment.id === commentId
+    );
+    this.data.comments.splice(index, 1);
+    console.log(index);
+  }
+
   deleteReply(comment: any, commentId: number) {
     const index = comment.replies.findIndex(
       (reply: any) => reply.id === commentId
@@ -93,6 +101,10 @@ export class CommentsComponent implements OnInit {
 
   toggleUpdateInput(comment: any) {
     comment.showUpdateInput = !comment.showUpdateInput;
+  }
+
+  toggleDeleteModal(comment: any) {
+    comment.showDeleteModal = !comment.showDeleteModal;
   }
 
   editComment(comment: any, inputValue: string) {
