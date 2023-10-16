@@ -104,6 +104,7 @@ export class CommentsComponent implements OnInit {
   }
 
   toggleDeleteModal(comment: any) {
+    console.log(comment);
     comment.showDeleteModal = !comment.showDeleteModal;
   }
 
