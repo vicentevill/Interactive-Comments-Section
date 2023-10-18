@@ -1,7 +1,7 @@
 <ul class="comments">
   <li class="comments__comment-wrapper" *ngFor="let comment of data.comments">
     <div class="comments__comment">
-      <div class="comments__options-wrapper">
+      <div class="comments__comment-options-wrapper">
         <div class="comments__comment-rating-wrapper">
           <div
             class="comments__comment-rating-vote"
@@ -30,7 +30,7 @@
           (click)="toggleReplyInput(comment)"
         >
           <img
-            class="comments__reply-icon"
+            class="comments__comment-reply-icon"
             src="./assets/images/icon-reply.svg"
             alt="reply"
           />
@@ -38,10 +38,10 @@
         </div>
       </div>
       <div class="comments__comment-content-wrapper">
-        <div class="comments__comment-info-reply">
+        <div class="comments__comment-info-reply-wrapper">
           <div class="comments__comment-info">
             <img
-              class="comments__avatar"
+              class="comments__comment-avatar"
               [src]="comment.user.image.png"
               alt="avatar"
             />
@@ -54,28 +54,34 @@
             (click)="toggleReplyInput(comment)"
           >
             <img
-              class="comments__reply-icon"
+              class="comments__comment-reply-icon"
               src="./assets/images/icon-reply.svg"
               alt="reply"
             />
             Reply
           </div>
           <div
-            class="comments__edit-delete-wrapper"
+            class="comments__comment-edit-delete-wrapper"
             *ngIf="comment.user.username === data.currentUser.username"
           >
-            <div class="comments__delete" (click)="toggleDeleteModal(comment)">
+            <div
+              class="comments__comment-delete"
+              (click)="toggleDeleteModal(comment)"
+            >
               <img
-                class="comments__delete-icon"
+                class="comments__comment-delete-icon"
                 src="./assets/images/icon-delete.svg"
                 alt="delete"
               />
               <p>Delete</p>
             </div>
 
-            <div class="comments__edit" (click)="toggleUpdateInput(comment)">
+            <div
+              class="comments__comment-edit"
+              (click)="toggleUpdateInput(comment)"
+            >
               <img
-                class="comments__edit-icon"
+                class="comments__comment-edit-icon"
                 src="./assets/images/icon-edit.svg"
                 alt="edit"
               />
@@ -85,18 +91,18 @@
         </div>
 
         <div
-          class="comments__content-update"
+          class="comments__comment-content-update"
           *ngIf="comment.showUpdateInput; else contentBlock"
         >
           <textarea
             #updateValue
-            class="comments__reply-input-field"
+            class="comments__comment-reply-input-field"
             name="edit-comment-field"
             maxlength="200"
             [value]="comment.content"
           ></textarea>
           <div
-            class="comments__reply-input-send"
+            class="comments__comment-reply-input-send"
             *ngIf="comment.showUpdateInput"
             (click)="editComment(comment, updateValue.value)"
           >
@@ -106,29 +112,31 @@
 
         <ng-template #contentBlock>
           <!-- Render content when showUpdateInput is false -->
-          <div class="comment__comment-content">
+          <div class="comments__comment-content">
             {{ comment.content }}
           </div>
         </ng-template>
       </div>
     </div>
     <div
-      class="comments__delete-modal-background"
+      class="comments__comment-delete-modal-background"
       *ngIf="comment.showDeleteModal"
     >
-      <div class="comments__delete-modal">
-        <h1 class="comments__delete-modal-header">Delete comment</h1>
-        <p class="comments__delete-modal-message">
+      <div class="comments__comment-delete-modal">
+        <h1 class="comments__comment-delete-modal-header">Delete comment</h1>
+        <p class="comments__comment-delete-modal-message">
           Are you sure you want to delete this comment? This will remove the
           comment and can't be undone.
         </p>
         <div
-          class="comments__delete-modal-buttons-wrapper"
+          class="comments__comment-delete-modal-buttons-wrapper"
           (click)="toggleDeleteModal(comment)"
         >
-          <div class="comments__delete-modal-button-cancel">No, cancel</div>
+          <div class="comments__comment-delete-modal-button-cancel">
+            No, cancel
+          </div>
           <div
-            class="comments__delete-modal-button-delete"
+            class="comments__comment-delete-modal-button-delete"
             (click)="deleteComment(comment.id)"
           >
             Yes, delete
@@ -137,9 +145,9 @@
       </div>
     </div>
     <ul class="comments__replies" *ngIf="comment.replies.length > 0">
-      <li class="comments__reply" *ngFor="let reply of comment.replies">
+      <li class="comments__comment-reply" *ngFor="let reply of comment.replies">
         <div class="comments__comment">
-          <div class="comments__options-wrapper">
+          <div class="comments__comment-options-wrapper">
             <div class="comments__comment-rating-wrapper">
               <div
                 class="comments__comment-rating-vote"
@@ -169,27 +177,30 @@
               (click)="toggleReplyInput(comment)"
             >
               <img
-                class="comments__reply-icon"
+                class="comments__comment-reply-icon"
                 src="./assets/images/icon-reply.svg"
                 alt="reply"
               />
               Reply
             </div>
             <div
-              class="comments__edit-delete-wrapper"
+              class="comments__comment-edit-delete-wrapper"
               *ngIf="reply.user.username === data.currentUser.username"
             >
-              <div class="comments__delete">
+              <div class="comments__comment-delete">
                 <img
-                  class="comments__delete-icon"
+                  class="comments__comment-delete-icon"
                   src="./assets/images/icon-delete.svg"
                   alt="delete"
                 />
                 <p>Delete</p>
               </div>
-              <div class="comments__edit" (click)="toggleUpdateInput(reply)">
+              <div
+                class="comments__comment-edit"
+                (click)="toggleUpdateInput(reply)"
+              >
                 <img
-                  class="comments__edit-icon"
+                  class="comments__comment-edit-icon"
                   src="./assets/images/icon-edit.svg"
                   alt="edit"
                 />
@@ -198,10 +209,10 @@
             </div>
           </div>
           <div class="comments__comment-content-wrapper">
-            <div class="comments__comment-info-reply">
+            <div class="comments__comment-info-reply-wrapper">
               <div class="comments__comment-info">
                 <img
-                  class="comments__avatar"
+                  class="comments__comment-avatar"
                   [src]="reply.user.image.png"
                   alt="avatar"
                 />
@@ -214,30 +225,33 @@
                 *ngIf="reply.user.username != data.currentUser.username"
               >
                 <img
-                  class="comments__reply-icon"
+                  class="comments__comment-reply-icon"
                   src="./assets/images/icon-reply.svg"
                   alt="reply"
                 />
                 Reply
               </div>
               <div
-                class="comments__edit-delete-wrapper"
+                class="comments__comment-edit-delete-wrapper"
                 *ngIf="reply.user.username === data.currentUser.username"
               >
                 <div
-                  class="comments__delete"
+                  class="comments__comment-delete"
                   (click)="toggleDeleteModal(reply)"
                 >
                   <img
-                    class="comments__delete-icon"
+                    class="comments__comment-delete-icon"
                     src="./assets/images/icon-delete.svg"
                     alt="delete"
                   />
                   <p>Delete</p>
                 </div>
-                <div class="comments__edit" (click)="toggleUpdateInput(reply)">
+                <div
+                  class="comments__comment-edit"
+                  (click)="toggleUpdateInput(reply)"
+                >
                   <img
-                    class="comments__edit-icon"
+                    class="comments__comment-edit-icon"
                     src="./assets/images/icon-edit.svg"
                     alt="edit"
                   />
@@ -247,18 +261,18 @@
             </div>
 
             <div
-              class="comments__content-update"
+              class="comments__comment-content-update"
               *ngIf="reply.showUpdateInput; else contentBlock"
             >
               <textarea
                 #editInput
-                class="comments__reply-input-field"
+                class="comments__comment-reply-input-field"
                 name="edit-comment-field"
                 maxlength="200"
                 [value]="reply.content"
               ></textarea>
               <div
-                class="comments__reply-input-send"
+                class="comments__comment-reply-input-send"
                 *ngIf="reply.showUpdateInput"
                 (click)="editComment(reply, editInput.value)"
               >
@@ -266,8 +280,8 @@
               </div>
             </div>
             <ng-template #contentBlock>
-              <div class="comment__comment-content">
-                <span class="comment__replying-to"
+              <div class="comments__comment-content">
+                <span class="comments__comment-replying-to"
                   >@{{ reply.replyingTo }}</span
                 >
                 {{ reply.content }}
@@ -275,20 +289,23 @@
             </ng-template>
           </div>
         </div>
-        <div class="comments__reply-input-wrapper" *ngIf="reply.showReplyInput">
+        <div
+          class="comments__comment-reply-input-wrapper"
+          *ngIf="reply.showReplyInput"
+        >
           <img
-            class="comments__reply-input-avatar"
+            class="comments__comment-reply-input-avatar"
             [src]="data.currentUser.image.png"
             alt="avatar"
           />
           <textarea
-            class="comments__reply-input-field"
+            class="comments__comment-reply-input-field"
             name="reply-field"
             maxlength="200"
             #inputRef
           ></textarea>
           <div
-            class="comments__reply-input-send"
+            class="comments__comment-reply-input-send"
             (click)="
               addReply(comment, reply.user.username, inputRef.value, reply)
             "
@@ -297,22 +314,26 @@
           </div>
         </div>
         <div
-          class="comments__delete-modal-background"
+          class="comments__comment-delete-modal-background"
           *ngIf="reply.showDeleteModal"
         >
-          <div class="comments__delete-modal">
-            <h1 class="comments__delete-modal-header">Delete comment</h1>
-            <p class="comments__delete-modal-message">
+          <div class="comments__comment-delete-modal">
+            <h1 class="comments__comment-delete-modal-header">
+              Delete comment
+            </h1>
+            <p class="comments__comment-delete-modal-message">
               Are you sure you want to delete this comment? This will remove the
               comment and can't be undone.
             </p>
             <div
-              class="comments__delete-modal-buttons-wrapper"
+              class="comments__comment-delete-modal-buttons-wrapper"
               (click)="toggleDeleteModal(reply)"
             >
-              <div class="comments__delete-modal-button-cancel">No, cancel</div>
+              <div class="comments__comment-delete-modal-button-cancel">
+                No, cancel
+              </div>
               <div
-                class="comments__delete-modal-button-delete"
+                class="comments__comment-delete-modal-button-delete"
                 (click)="deleteReply(comment, reply.id)"
               >
                 Yes, delete
@@ -322,20 +343,23 @@
         </div>
       </li>
     </ul>
-    <div class="comments__reply-input-wrapper" *ngIf="comment.showReplyInput">
+    <div
+      class="comments__comment-reply-input-wrapper"
+      *ngIf="comment.showReplyInput"
+    >
       <img
-        class="comments__reply-input-avatar"
+        class="comments__comment-reply-input-avatar"
         [src]="data.currentUser.image.png"
         alt="avatar"
       />
       <textarea
-        class="comments__reply-input-field"
+        class="comments__comment-reply-input-field"
         name="reply-field"
         maxlength="200"
         #inputRef
       ></textarea>
       <div
-        class="comments__reply-input-send"
+        class="comments__comment-reply-input-send"
         (click)="addReply(comment, comment.user.username, inputRef.value)"
       >
         Reply
@@ -343,14 +367,14 @@
     </div>
   </li>
   <div class="comments__add-comment">
-    <div class="comments__reply-input-wrapper">
+    <div class="comments__comment-reply-input-wrapper">
       <img
-        class="comments__reply-input-avatar"
+        class="comments__comment-reply-input-avatar"
         [src]="data.currentUser.image.png"
         alt="avatar"
       />
       <textarea
-        class="comments__reply-input-field"
+        class="comments__comment-reply-input-field"
         name="reply-field"
         maxlength="200"
         [value]="commentInputValue"
@@ -358,7 +382,7 @@
         (input)="onInput(inputRef.value)"
       ></textarea>
       <div
-        class="comments__reply-input-send"
+        class="comments__comment-reply-input-send"
         (click)="addComment(commentInputValue)"
       >
         Reply

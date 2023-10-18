@@ -11,10 +11,6 @@ export class CommentsComponent implements OnInit {
 
   commentInputValue: string = '';
 
-  logData() {
-    console.log(this.data);
-  }
-
   increment(comment: any) {
     comment.score++;
   }
@@ -23,7 +19,7 @@ export class CommentsComponent implements OnInit {
     comment.score--;
   }
 
-  onInput(value: string): void {
+  onInput(value: string) {
     this.commentInputValue = value;
   }
 
@@ -87,12 +83,13 @@ export class CommentsComponent implements OnInit {
     console.log(index);
   }
 
-  editReply(comment: any, input: string) {
-    comment.content = input;
-  }
-
-  getValue(inputValue: string) {
-    console.log('Input value:', inputValue);
+  editComment(comment: any, inputValue: string) {
+    if (!inputValue) {
+      return;
+    }
+    comment.content = inputValue;
+    console.log(inputValue);
+    this.toggleUpdateInput(comment);
   }
 
   toggleReplyInput(comment: any) {
@@ -106,15 +103,6 @@ export class CommentsComponent implements OnInit {
   toggleDeleteModal(comment: any) {
     console.log(comment);
     comment.showDeleteModal = !comment.showDeleteModal;
-  }
-
-  editComment(comment: any, inputValue: string) {
-    if (!inputValue) {
-      return;
-    }
-    comment.content = inputValue;
-    console.log(inputValue);
-    this.toggleUpdateInput(comment);
   }
 
   constructor(private fetchCommentsService: FetchCommentsService) {}
