@@ -60,6 +60,8 @@
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+  color: var(--moderate-blue);
+  font-weight: 500;
 }
 
 .comments__comment-reply-icon {
@@ -93,6 +95,10 @@
   width: 2rem;
 }
 
+.comments__comment-created-at {
+  color: var(--grayish-blue);
+}
+
 .comments__comment-edit-delete-wrapper {
   display: flex;
   gap: 1rem;
@@ -104,6 +110,7 @@
   gap: 0.5rem;
   cursor: pointer;
   color: var(--soft-red);
+  font-weight: 500;
 }
 
 .comments__comment-delete-icon {
@@ -119,6 +126,7 @@
   gap: 0.5rem;
   cursor: pointer;
   color: var(--moderate-blue);
+  font-weight: 500;
 }
 
 .comments__comment-content-update {
@@ -158,6 +166,7 @@
 
 .comments__comment-content {
   width: 100%;
+  color: var(--grayish-blue);
 }
 
 .comments__comment-delete-modal-background {

@@ -46,7 +46,7 @@
               alt="avatar"
             />
             <p>{{ comment.user.username }}</p>
-            <p>{{ comment.createdAt }}</p>
+            <p class="comments__comment-created-at">{{ comment.createdAt }}</p>
           </div>
           <div
             *ngIf="comment.user.username != data.currentUser.username"
@@ -75,7 +75,6 @@
               />
               <p>Delete</p>
             </div>
-
             <div
               class="comments__comment-edit"
               (click)="toggleUpdateInput(comment)"
@@ -89,7 +88,6 @@
             </div>
           </div>
         </div>
-
         <div
           class="comments__comment-content-update"
           *ngIf="comment.showUpdateInput; else contentBlock"
@@ -109,7 +107,6 @@
             Update
           </div>
         </div>
-
         <ng-template #contentBlock>
           <!-- Render content when showUpdateInput is false -->
           <div class="comments__comment-content">
@@ -217,7 +214,9 @@
                   alt="avatar"
                 />
                 <p>{{ reply.user.username }}</p>
-                <p>{{ reply.createdAt }}</p>
+                <p class="comments__comment-created-at">
+                  {{ reply.createdAt }}
+                </p>
               </div>
               <div
                 class="comments__comment-reply-button"
@@ -259,13 +258,12 @@
                 </div>
               </div>
             </div>
-
             <div
               class="comments__comment-content-update"
               *ngIf="reply.showUpdateInput; else contentBlock"
             >
               <textarea
-                #editInput
+                #editValue
                 class="comments__comment-reply-input-field"
                 name="edit-comment-field"
                 maxlength="200"
@@ -274,7 +272,7 @@
               <div
                 class="comments__comment-reply-input-send"
                 *ngIf="reply.showUpdateInput"
-                (click)="editComment(reply, editInput.value)"
+                (click)="editComment(reply, editValue.value)"
               >
                 Update
               </div>
@@ -302,12 +300,12 @@
             class="comments__comment-reply-input-field"
             name="reply-field"
             maxlength="200"
-            #inputRef
+            #inputValue
           ></textarea>
           <div
             class="comments__comment-reply-input-send"
             (click)="
-              addReply(comment, reply.user.username, inputRef.value, reply)
+              addReply(comment, reply.user.username, inputValue.value, reply)
             "
           >
             Reply
@@ -356,11 +354,11 @@
         class="comments__comment-reply-input-field"
         name="reply-field"
         maxlength="200"
-        #inputRef
+        #inputValue
       ></textarea>
       <div
         class="comments__comment-reply-input-send"
-        (click)="addReply(comment, comment.user.username, inputRef.value)"
+        (click)="addReply(comment, comment.user.username, inputValue.value)"
       >
         Reply
       </div>
@@ -375,17 +373,17 @@
       />
       <textarea
         class="comments__comment-reply-input-field"
-        name="reply-field"
+        name="comment-field"
         maxlength="200"
         [value]="commentInputValue"
-        #inputRef
-        (input)="onInput(inputRef.value)"
+        #inputValue
+        (input)="onInput(inputValue.value)"
       ></textarea>
       <div
         class="comments__comment-reply-input-send"
         (click)="addComment(commentInputValue)"
       >
-        Reply
+        Send
       </div>
     </div>
   </div>
