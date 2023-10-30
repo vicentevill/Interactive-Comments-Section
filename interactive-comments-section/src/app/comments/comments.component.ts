@@ -4,7 +4,7 @@ import { FetchCommentsService } from '../fetch-comments.service';
 @Component({
   selector: 'app-comments',
   templateUrl: './comments.component.html',
-  styleUrls: ['./comments.component.css'],
+  styleUrls: ['./comments.component.css', './comments-cont.component.css'],
 })
 export class CommentsComponent implements OnInit {
   data: any;
